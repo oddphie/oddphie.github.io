@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+
+:root {
+    --bg-color: #f0f0f0;
+    --txt-color: #1f1f1f;
+
+    --accent: #7aa3bb;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+    font-family: 'Lato', sans-serif;
+    color: var(--txt-color);
+    background-size: 27px 27px;
+    background-image: linear-gradient(to right, #d0d0d0 1px, transparent 1px), linear-gradient(to bottom, #d0d0d0 1px, transparent 1px);
+}
+
+::-webkit-scrollbar {
+    background: #d0d0d0;
+    width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-color);
+    border-radius: 50px;
+    border: 3px #d0d0d0 solid;
+}
+
+::selection {
+    color: white;
+    background-color: var(--accent);
+}
+
+::-moz-selection {
+    color: white;
+    background-color: var(--accent);
+}
+
+h1 {
+    text-transform: lowercase;
+    margin-top: 0;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+p,
+a,
+ul {
+    font-size: 14px;
+}
+
+.underlined {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.underlined::after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 25px);
+    right: 0;
+    bottom: 2px;
+    height: 1px;
+    background-color: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0% 100%;
+    transition: 350ms ease-out;
+}
+
+iconify-icon {
+    color: var(--txt-color);
+    font-size: 24px;
+    transition: 350ms;
+}
+
+iconify-icon.txt-size {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-bottom: 2px;
+}
+
+.parallax {
+    background-image: url(banner.png);
+    min-height: 350px;
+    max-height: 45vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: saturate(150%) brightness(0.8);
+}
+
+.banner {
+    background-color: var(--accent);
+    background-image: linear-gradient(to bottom right, var(--accent) 25%, #9fd0e2 100%);
+    border-bottom: 1px white solid;
+    box-shadow: 50vw 0 100px white, -50vw 0 100px white;
+    height: calc(27px * 8);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.img-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000050;
+    z-index: 2;
+}
+
+.img-preview>img {
+    width: 850px;
+    cursor: pointer;
+}
+
+main {
+    position: relative;
+    display: flex;
+    gap: 50px;
+    margin: 180px auto 0;
+    padding: 50px;
+    width: 800px;
+    background-color: white;
+    border-radius: 5px 0 0 0;
+    box-shadow: 5px 2px 5px #00000020, -5px 2px 5px #00000020;
+}
+
+nav {
+    position: absolute;
+    top: -37px;
+    right: 0;
+    overflow: hidden;
+    font-weight: bold;
+    text-transform: lowercase;
+    background-color: var(--bg-color);
+    border-radius: 5px 5px 0 0;
+    box-shadow: 5px -3px 5px #00000020;
+}
+
+nav ul {
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+nav li {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 500ms ease-out;
+}
+
+nav li:first-child {
+    background-color: white;
+}
+
+nav li:hover {
+    background-color: white;
+}
+
+nav li>iconify-icon {
+    font-size: 16px;
+    margin-bottom: 0;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+#sidebar {
+    height: 100%;
+    max-width: 250px;
+    position: sticky;
+    top: 20px;
+    color: var(--txt-color);
+    fill: var(--txt-color);
+    z-index: 2;
+    transition: 350ms;
+}
+
+#sidebar>* {
+    display: block;
+    opacity: 0;
+    animation: 350ms appear;
+    animation-fill-mode: forwards;
+}
+
+p.links {
+    margin: 24px 0;
+}
+
+p.links>a {
+    display: inline-block;
+    margin: 5px 0;
+    text-decoration: none;
+}
+
+.underlined:hover::after {
+    transform: scaleX(1);
+}
+
+a,
+a>iconify-icon {
+    color: #666;
+    fill: #666;
+    transition: 350ms;
+}
+
+a:hover,
+a:hover>iconify-icon {
+    color: var(--accent);
+    fill: var(--accent);
+}
+
+#content>section {
+    margin-bottom: 80px;
+    max-width: 800px;
+    border: 1px #d0d0d0 solid;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 500ms;
+}
+
+#content>section:hover {
+    box-shadow: 0 0 5px #00000010;
+}
+
+#content>section img {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+}
+
+#content>section>div {
+    padding: 20px;
+}
+
+#content>section h2 {
+    margin: 6px 0;
+}
+
+#content>section p {
+    margin: 12px 0 6px 0;
+}
+
+#content>section p:last-of-type>a {
+    margin-right: 15px;
+}
+
+@media only screen and (max-width: 1000px) {
+    header {
+        position: absolute;
+    }
+
+    .parallax {
+        height: 100vh;
+    }
+
+    main {
+        margin-left: 0;
+    }
+
+    main>section img {
+        height: 50%;
+    }
+}
+
+@keyframes appear {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
