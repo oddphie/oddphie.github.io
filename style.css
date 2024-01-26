@@ -52,6 +52,19 @@ ul {
     font-size: 14px;
 }
 
+hr {
+    width: 100%;
+    border: 1px #d0d0d0 solid;
+}
+
+.divider{
+    color: #d0d0d0;
+    text-align: center;
+    width: 100%;
+    margin: 30px 0;
+    user-select: none;
+}
+
 .underlined {
     position: relative;
     overflow-x: hidden;
@@ -70,17 +83,27 @@ ul {
     transition: 350ms ease-out;
 }
 
-iconify-icon {
+iconify-icon,
+.icon {
     color: var(--txt-color);
+    width: 24px;
     font-size: 24px;
     transition: 350ms;
 }
 
-iconify-icon.txt-size {
+iconify-icon.txt-size,
+.icon.txt-size {
+    width: 18px;
     font-size: 18px;
     vertical-align: middle;
     margin-right: 5px;
     margin-bottom: 2px;
+}
+
+section.logos {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
 }
 
 .parallax {
@@ -155,24 +178,30 @@ nav ul {
     align-items: flex-end;
 }
 
-nav li {
+nav a {
+    display: inline-block;
     padding: 10px 15px;
     cursor: pointer;
     transition: 500ms ease-out;
 }
 
-nav li:first-child {
+nav .current {
     background-color: white;
 }
 
-nav li:hover {
+nav a:hover {
     background-color: white;
 }
 
-nav li>iconify-icon {
+nav li a, nav li a iconify-icon, nav li a:hover, nav li a:hover iconify-icon {
+    text-decoration: none;
+    color: var(--txt-color);
+    fill: var(--txt-color);
+}
+
+nav li iconify-icon {
     font-size: 16px;
     margin-bottom: 0;
-    margin-right: 8px;
     vertical-align: middle;
 }
 
@@ -221,20 +250,35 @@ a:hover>iconify-icon {
     fill: var(--accent);
 }
 
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+#content:has(>section.post) {
+    gap: 80px;
+}
+
 #content>section {
-    margin-bottom: 80px;
+    width: 100%;
     max-width: 800px;
-    border: 1px #d0d0d0 solid;
-    border-radius: 5px;
-    overflow: hidden;
     transition: 500ms;
 }
 
-#content>section:hover {
+#content>section.post {
+    border: 1px #d0d0d0 solid;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#content>section.post:hover {
     box-shadow: 0 0 5px #00000010;
 }
 
-#content>section img {
+#content>section.post img {
     display: block;
     width: 100%;
     max-height: 400px;
@@ -243,7 +287,7 @@ a:hover>iconify-icon {
     cursor: pointer;
 }
 
-#content>section>div {
+#content>section.post>div {
     padding: 20px;
 }
 
@@ -257,6 +301,48 @@ a:hover>iconify-icon {
 
 #content>section p:last-of-type>a {
     margin-right: 15px;
+}
+
+.skill-bar {
+    width: 100%;
+    background-color: #ddd;
+    margin: 10px 0;
+    border-radius: 2px;
+}
+
+.skill-bar:first-of-type {
+    margin-top: 15px;
+}
+
+.skill-bar:last-of-type {
+    margin-bottom: 15px;
+}
+
+.skill-bar>div {
+    background-color: var(--accent);
+    padding: 6px 10px;
+    color: white;
+    border-radius: 2px 0 0 2px;
+}
+
+.skill-bar>.hundred {
+    width: calc(100% - 10px * 2);
+}
+
+.skill-bar>.ninety {
+    width: calc(90% - 10px * 2);
+}
+
+.skill-bar>.eighty {
+    width: calc(80% - 10px * 2);
+}
+
+.skill-bar>.seventy {
+    width: calc(70% - 10px * 2);
+}
+
+.skill-bar>.sixty {
+    width: calc(60% - 10px * 2);
 }
 
 @media only screen and (max-width: 1000px) {
