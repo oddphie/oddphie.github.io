@@ -1,5 +1,7 @@
+/* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 
+/* colours */
 :root {
     --bg-color: #f0f0f0;
     --txt-color: #1f1f1f;
@@ -7,6 +9,7 @@
     --accent: #7aa3bb;
 }
 
+/* body */
 body {
     margin: 0;
     background-color: var(--bg-color);
@@ -37,6 +40,7 @@ body {
     background-color: var(--accent);
 }
 
+/* text elements */
 h1 {
     text-transform: lowercase;
     margin-top: 0;
@@ -63,19 +67,6 @@ section>ul li:not(:first-of-type) {
     margin-top: 10px;
 }
 
-hr {
-    width: 100%;
-    border: 1px #d0d0d0 solid;
-}
-
-.divider{
-    color: #d0d0d0;
-    text-align: center;
-    width: 100%;
-    margin: 30px 0;
-    user-select: none;
-}
-
 .underlined {
     position: relative;
     overflow-x: hidden;
@@ -94,6 +85,21 @@ hr {
     transition: 350ms ease-out;
 }
 
+/* dividers */
+hr {
+    width: 100%;
+    border: 1px #d0d0d0 solid;
+}
+
+.divider{
+    color: #d0d0d0;
+    text-align: center;
+    width: 100%;
+    margin: 30px 0;
+    user-select: none;
+}
+
+/* icons */
 iconify-icon,
 .icon {
     color: var(--txt-color);
@@ -117,6 +123,7 @@ section.logos {
     margin: 15px 0;
 }
 
+/* images */
 .parallax {
     background-image: url(banner.png);
     min-height: 350px;
@@ -157,6 +164,7 @@ section.logos {
     cursor: pointer;
 }
 
+/* main */
 main {
     position: relative;
     display: flex;
@@ -169,6 +177,7 @@ main {
     box-shadow: 5px 2px 5px #00000020, -5px 2px 5px #00000020;
 }
 
+/* navigation */
 nav {
     position: absolute;
     top: -37px;
@@ -216,6 +225,7 @@ nav li iconify-icon {
     vertical-align: middle;
 }
 
+/* sidebar */
 #sidebar {
     height: 100%;
     max-width: 250px;
@@ -227,6 +237,7 @@ nav li iconify-icon {
     transition: 350ms;
 }
 
+/* links */
 p.links {
     margin: 24px 0;
 }
@@ -254,6 +265,7 @@ a:hover>iconify-icon {
     fill: var(--accent);
 }
 
+/* main content */
 #content {
     display: flex;
     flex-direction: column;
@@ -307,6 +319,7 @@ a:hover>iconify-icon {
     margin-right: 15px;
 }
 
+/* skill bar */
 .skill-bar {
     width: 100%;
     background-color: #ddd;
@@ -349,24 +362,7 @@ a:hover>iconify-icon {
     width: calc(60% - 10px * 2);
 }
 
-@media only screen and (max-width: 1000px) {
-    header {
-        position: absolute;
-    }
-
-    .parallax {
-        height: 100vh;
-    }
-
-    main {
-        margin-left: 0;
-    }
-
-    main>section img {
-        height: 50%;
-    }
-}
-
+/* animation */
 #sidebar>*{
     animation: 350ms appear-up;
 }
