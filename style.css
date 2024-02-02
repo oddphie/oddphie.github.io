@@ -46,10 +46,21 @@ h2 {
     font-size: 16px;
 }
 
+.title {
+    font-size: 64px;
+    margin-top: 0;
+    margin-bottom: 24px;
+    line-height: 1em;
+}
+
 p,
 a,
 ul {
     font-size: 14px;
+}
+
+section>ul li:not(:first-of-type) {
+    margin-top: 10px;
 }
 
 hr {
@@ -216,13 +227,6 @@ nav li iconify-icon {
     transition: 350ms;
 }
 
-#sidebar>* {
-    display: block;
-    opacity: 0;
-    animation: 350ms appear;
-    animation-fill-mode: forwards;
-}
-
 p.links {
     margin: 24px 0;
 }
@@ -291,7 +295,7 @@ a:hover>iconify-icon {
     padding: 20px;
 }
 
-#content>section h2 {
+#content>section h2:not(.title) {
     margin: 6px 0;
 }
 
@@ -363,9 +367,35 @@ a:hover>iconify-icon {
     }
 }
 
-@keyframes appear {
+#sidebar>*{
+    animation: 350ms appear-up;
+}
+
+.title>*{
+    animation: 350ms appear-right;
+}
+
+#sidebar>*, .title>* {
+    display: block;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear-up {
     from {
         transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes appear-right {
+    from {
+        transform: translateX(-20px);
         opacity: 0;
     }
 
