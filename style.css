@@ -367,11 +367,11 @@ a:hover>iconify-icon {
     animation: 350ms appear-up;
 }
 
-.title>*{
+.title>*, #content>*{
     animation: 350ms appear-right;
 }
 
-#sidebar>*, .title>* {
+#sidebar>*, #content>*, .title>* {
     display: block;
     opacity: 0;
     animation-fill-mode: forwards;

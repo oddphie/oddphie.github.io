@@ -15,7 +15,7 @@ revealSidebar();
 // Staggered reveal title words effect
 function revealTitle() {
 	let titles = document.querySelectorAll(".title");
-	
+
 	titles.forEach((title) => {
 		let words = title.textContent.split(" ");
 		title.innerText = "";
@@ -36,3 +36,11 @@ function revealTitle() {
 }
 
 revealTitle();
+
+// Staggered reveal content effect
+function revealContent(){
+	for (let i = 0; i < content.children.length; i++) {
+		// Add animation delay effect to each section in content
+		content.children[i].style.animationDelay = `calc(1000ms + ${i * 150}ms)`;		
+	}
+}
