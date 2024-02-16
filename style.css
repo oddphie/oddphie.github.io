@@ -319,49 +319,6 @@ a:hover>iconify-icon {
     margin-right: 15px;
 }
 
-/* skill bar */
-.skill-bar {
-    width: 100%;
-    background-color: #ddd;
-    margin: 10px 0;
-    border-radius: 2px;
-}
-
-.skill-bar:first-of-type {
-    margin-top: 15px;
-}
-
-.skill-bar:last-of-type {
-    margin-bottom: 15px;
-}
-
-.skill-bar>div {
-    background-color: var(--accent);
-    padding: 6px 10px;
-    color: white;
-    border-radius: 2px 0 0 2px;
-}
-
-.skill-bar>.hundred {
-    width: calc(100% - 10px * 2);
-}
-
-.skill-bar>.ninety {
-    width: calc(90% - 10px * 2);
-}
-
-.skill-bar>.eighty {
-    width: calc(80% - 10px * 2);
-}
-
-.skill-bar>.seventy {
-    width: calc(70% - 10px * 2);
-}
-
-.skill-bar>.sixty {
-    width: calc(60% - 10px * 2);
-}
-
 /* animation */
 #sidebar>*{
     animation: 350ms appear-up;
