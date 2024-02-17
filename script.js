@@ -134,8 +134,10 @@ function createSidebar() {
 	sidebar.appendChild(p3);
 }
 
-// Run fuctions
+// Run main fuctions
 createNav();
 createSidebar();
 revealSidebar();
+
+// Run page specific functions
 revealTitle();
