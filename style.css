@@ -244,11 +244,13 @@ nav li iconify-icon {
 }
 
 /* links */
-p.links {
+.links {
     margin: 24px 0;
+    padding-inline-start: 0;
+    list-style: none;
 }
 
-p.links>a {
+.links a {
     display: inline-block;
     margin: 5px 0;
     text-decoration: none;

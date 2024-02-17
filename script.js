@@ -10,8 +10,6 @@ function revealSidebar() {
 	}
 }
 
-revealSidebar();
-
 // Staggered reveal title words effect
 function revealTitle() {
 	let titles = document.querySelectorAll(".title");
@@ -33,8 +31,6 @@ function revealTitle() {
 		}
 	});
 }
-
-revealTitle();
 
 // Staggered reveal content effect
 function revealContent() {
@@ -85,13 +81,61 @@ function createNav() {
 	});
 }
 
-createNav();
+// Create sidebar
+function createSidebar() {
+	const sidebar = document.getElementById("sidebar");
 
-{
-	/* <ul>
-<li><a href="#"><iconify-icon icon="majesticons:browser"></iconify-icon>Websites</a></li>
-<li><a href="#"><iconify-icon icon="ep:picture-filled"></iconify-icon>Art</a></li>
-<li><a href="#"><iconify-icon icon="fluent:list-16-filled"></iconify-icon>Other</a></li>
-<li class="current"><a href="#"><iconify-icon icon="akar-icons:info-fill"></iconify-icon>About me</a></li>
-</ul> */
+	// Create heading
+	let heading = document.createElement("h1");
+	let link = document.createElement("a");
+	link.href = "/";
+	link.innerText = "Sophie Martin";
+	heading.appendChild(link);
+	sidebar.appendChild(heading);
+
+	// Create description
+	let p1 = document.createElement("p");
+	p1.innerText = `Hi, I'm a 19 year old student from Brisbane, Australia and consider myself an artist and designer.`;
+	sidebar.appendChild(p1);
+
+	let p2 = document.createElement("p");
+	p2.innerText = `I'm currently in my third and final year studying at QUT completing a Bachelor of Creative Industries, majoring in Interactive and Visual Design, as well as taking a minor in Programming and having already completed a minor in Design and Visual Storytelling for Animation.`;
+	sidebar.appendChild(p2);
+
+	// Link item information
+	let link_items = [
+		["https://github.com/sophmxm", "mingcute:github-fill", "github.com/sophmxm"],
+		["www.linkedin.com/in/sophmxm", "mdi:linkedin", "linkedin.com/sophmxm"],
+		["mailto:sophie.martin@connect.qut.edu.au", "ic:round-email", "sophie.martin@connect.qut.edu.au"],
+	];
+
+	// Add each link item to the sidebar
+	let list = document.createElement("ul");
+	list.classList.add("links");
+	sidebar.appendChild(list);
+	link_items.forEach((item) => {
+		list_item = document.createElement("li");
+		list.appendChild(list_item);
+
+		let link = document.createElement("a");
+		link.href = item[0];
+		link.classList.add("underlined");
+		link.innerText = " " + item[2];
+		list_item.appendChild(link);
+
+		let icon = document.createElement("iconify-icon");
+		icon.icon = item[1];
+		icon.classList.add("txt-size");
+		link.prepend(icon);
+	});
+
+	let p3 = document.createElement("p");
+	p3.innerText = `Website portfolio made by me from scratch with HTML, CSS, and JavaScript.`;
+	sidebar.appendChild(p3);
 }
+
+// Run fuctions
+createNav();
+createSidebar();
+revealSidebar();
+revealTitle();
