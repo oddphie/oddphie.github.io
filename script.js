@@ -141,3 +141,19 @@ revealSidebar();
 
 // Run page specific functions
 revealTitle();
+
+// Expand image
+function expandImage(img_src) {
+	let img_preview = document.createElement("div");
+	img_preview.classList.add("img-preview");
+
+	let img = document.createElement("img");
+	img.src = img_src;
+	img_preview.appendChild(img);
+
+	document.body.appendChild(img_preview);
+
+	img_preview.addEventListener("click", function () {
+		img_preview.remove();
+	});
+}

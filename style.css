@@ -167,7 +167,8 @@ section.logos {
 }
 
 .img-preview>img {
-    width: 850px;
+    max-width: 850px;
+    max-height: 90vh;
     cursor: pointer;
 }
 
@@ -339,6 +340,7 @@ a:hover>iconify-icon {
         display: flex;
         gap: 5px;
         flex-direction: column;
+        width: 100%;
 
         >img {
             width: 100%;
