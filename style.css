@@ -297,39 +297,52 @@ a:hover>iconify-icon {
     transition: 500ms;
 }
 
+/* post sections */
 #content>section.post {
     border: 1px #d0d0d0 solid;
     border-radius: 5px;
     overflow: hidden;
+
+    h2 {
+        margin: 6px 10px;
+    }
+
+    p {
+        margin: 12px;
+    }
+
+    p:last-of-type>a {
+        margin-right: 15px;
+    }
+
+    img,
+    iframe {
+        display: block;
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        object-position: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    >div {
+        padding: 20px;
+    }
 }
 
 #content>section.post:hover {
     box-shadow: 0 0 5px #00000010;
 }
 
-#content>section.post img {
-    display: block;
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    object-position: center;
-    cursor: pointer;
-}
+#content>section:not(.post) {
+    h2:not(.title) {
+        margin: 6px 0;
+    }
 
-#content>section.post>div {
-    padding: 20px;
-}
-
-#content>section h2:not(.title) {
-    margin: 6px 0;
-}
-
-#content>section p {
-    margin: 12px 0 6px 0;
-}
-
-#content>section p:last-of-type>a {
-    margin-right: 15px;
+    p {
+        margin: 12px 0;
+    }
 }
 
 .flex {
