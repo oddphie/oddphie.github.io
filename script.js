@@ -134,16 +134,9 @@ function createSidebar() {
 	sidebar.appendChild(p3);
 }
 
-// Run main fuctions
-createNav();
-createSidebar();
-revealSidebar();
-
-// Run page specific functions
-revealTitle();
-
 // Expand image
 function expandImage(img_src) {
+	// Creates image preview
 	let img_preview = document.createElement("div");
 	img_preview.classList.add("img-preview");
 
@@ -153,7 +146,59 @@ function expandImage(img_src) {
 
 	document.body.appendChild(img_preview);
 
+	// Removes image preview on click
 	img_preview.addEventListener("click", function () {
 		img_preview.remove();
 	});
 }
+
+// Multiple images rotation
+function rotateImages() {
+	let img_lists = document.querySelectorAll(".img-list");
+
+	img_lists.forEach((img_list) => {
+		// Keeps track of the current image that is being displayed
+		let current_img = 0;
+		// For each image in the image list
+		for (let i = 0; i < img_list.children.length; i++) {
+			img_list.children[i].onclick = () => {
+				// Sets current image being displayed
+				current_img = i;
+
+				// Creates image preview
+				let img_preview = document.createElement("div");
+				img_preview.classList.add("img-preview");
+
+				let img = document.createElement("img");
+				img.src = img_list.children[i].src;
+				img_preview.appendChild(img);
+
+				document.body.appendChild(img_preview);
+
+				// Removes or roates image preview on click
+				img_preview.addEventListener("click", function (e) {
+					if (e.target != img) {
+						// Remove image preview if clicked outside image
+						img_preview.remove();
+					} else if (img_list.children[current_img + 1] == null) {
+						// Remove image preview if no more images in list
+						img_preview.remove();
+					} else {
+						// Else, rotate image preview to next image
+						current_img += 1;
+						img.src = img_list.children[current_img].src;
+					}
+				});
+			};
+		}
+	});
+}
+
+// Run main fuctions
+createNav();
+createSidebar();
+revealSidebar();
+
+// Run other misc functions
+revealTitle();
+rotateImages();
