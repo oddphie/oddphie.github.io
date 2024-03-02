@@ -315,7 +315,7 @@ a:hover>iconify-icon {
         margin-right: 15px;
     }
 
-    img,
+    img, div:not(.flex)>img,
     iframe {
         display: block;
         width: 100%;
@@ -324,6 +324,14 @@ a:hover>iconify-icon {
         object-position: center;
         margin-bottom: 10px;
         cursor: pointer;
+    }
+
+    div.flex>img {
+        width: 50%;
+    }
+
+    div.flex.col-three>img {
+        width: 33%
     }
 
     >div:not(.img-list) {
@@ -363,7 +371,7 @@ a:hover>iconify-icon {
     }
 }
 
-.flex:has(img:hover) img:not(:hover) {
+.img-hover-effect:has(img:hover) img:not(:hover) {
     opacity: 0.5;
     transform: scale(0.95);
 }
