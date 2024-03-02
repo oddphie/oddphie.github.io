@@ -179,14 +179,14 @@ main {
     gap: 50px;
     margin: 180px auto 0;
     padding: 50px;
-    width: 800px;
+    max-width: 800px;
     background-color: white;
     border-radius: 5px 0 0 0;
     box-shadow: 5px 2px 5px #00000020, -5px 2px 5px #00000020;
 }
 
 /* navigation */
-nav {
+#nav-bar {
     position: absolute;
     top: -37px;
     right: 0;
@@ -198,7 +198,7 @@ nav {
     box-shadow: 5px -3px 5px #00000020;
 }
 
-nav ul {
+#nav-bar ul {
     list-style: none;
     padding-inline-start: 0;
     margin: 0;
@@ -206,31 +206,31 @@ nav ul {
     align-items: flex-end;
 }
 
-nav a {
+#nav-bar a {
     display: inline-block;
     padding: 10px 15px;
     cursor: pointer;
     transition: 500ms ease-out;
 }
 
-nav .current {
+#nav-bar .current {
     background-color: white;
 }
 
-nav a:hover {
+#nav-bar a:hover {
     background-color: white;
 }
 
-nav li a,
-nav li a iconify-icon,
-nav li a:hover,
-nav li a:hover iconify-icon {
+#nav-bar li a,
+#nav-bar li a iconify-icon,
+#nav-bar li a:hover,
+#nav-bar li a:hover iconify-icon {
     text-decoration: none;
     color: var(--txt-color);
     fill: var(--txt-color);
 }
 
-nav li iconify-icon {
+#nav-bar li iconify-icon {
     font-size: 16px;
     margin-bottom: 0;
     vertical-align: middle;
@@ -319,14 +319,14 @@ a:hover>iconify-icon {
     iframe {
         display: block;
         width: 100%;
-        max-height: 400px;
+        max-height: 800px;
         object-fit: cover;
         object-position: center;
         margin-bottom: 10px;
         cursor: pointer;
     }
 
-    >div {
+    >div:not(.img-list) {
         padding: 20px;
     }
 }
@@ -410,5 +410,29 @@ a:hover>iconify-icon {
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+/* responsive */
+@media only screen and (max-width: 768px) {
+    main{
+        flex-direction: column;
+        border-radius: 0;
+        max-width: calc(100vw - 20px *2);
+        padding: 50px 20px;
+    }
+
+    #nav-bar {
+        left: 0;
+        width: fit-content;
+    }
+
+    #nav-bar iconify-icon {
+        margin-right: -5px;
+    }
+
+    #sidebar{
+        position: relative;
+        max-width: 100%;
     }
 }
