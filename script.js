@@ -105,7 +105,7 @@ function createSidebar() {
 	// Link item information
 	let link_items = [
 		["https://github.com/sophmxm", "mingcute:github-fill", "github.com/sophmxm"],
-		["www.linkedin.com/in/sophmxm", "mdi:linkedin", "linkedin.com/sophmxm"],
+		["https://www.linkedin.com/in/sophmxm/", "mdi:linkedin", "linkedin.com/sophmxm"],
 		["mailto:sophie.martin@connect.qut.edu.au", "ic:round-email", "sophie.martin@connect.qut.edu.au"],
 	];
 
@@ -226,8 +226,8 @@ revealSidebar();
 
 // Run other misc functions
 revealTitle();
-let img_lists = document.querySelectorAll(".img-list");
 
+let img_lists = document.querySelectorAll(".img-list");
 // For each image list, run function
 img_lists.forEach((img_list_element) => {
 	expandImageList(img_list_element);
