@@ -161,49 +161,62 @@ function expandImage(img_src) {
 	}
 }
 
-// Multiple images rotation
-function rotateImages() {
-	let img_lists = document.querySelectorAll(".img-list");
+// Expand image and rotate through list
+function expandImageList(img_list_element) {
+	// Keeps track of the current image that is being displayed
+	let current_img = 0;
 
-	img_lists.forEach((img_list) => {
-		// Keeps track of the current image that is being displayed
-		let current_img = 0;
-		// For each image in the image list
-		for (let i = 0; i < img_list.children.length; i++) {
-			// On click
-			img_list.children[i].onclick = () => {
-				if (isWidth1024()) {
-					// Sets current image being displayed
-					current_img = i;
+	let img_list = [...img_list_element.children];
 
-					// Creates image preview
-					let img_preview = document.createElement("div");
-					img_preview.classList.add("img-preview");
-
-					let img = document.createElement("img");
-					img.src = img_list.children[i].src;
-					img_preview.appendChild(img);
-
-					document.body.appendChild(img_preview);
-
-					// Removes or roates image preview on click
-					img_preview.addEventListener("click", function (e) {
-						if (e.target != img) {
-							// Remove image preview if clicked outside image
-							img_preview.remove();
-						} else if (img_list.children[current_img + 1] == null) {
-							// Remove image preview if no more images in list
-							img_preview.remove();
-						} else {
-							// Else, rotate image preview to next image
-							current_img += 1;
-							img.src = img_list.children[current_img].src;
-						}
-					});
-				}
-			};
+	// For each child element in image list
+	for (let i = 0; i < img_list.length; i++) {
+		// Check if element is an image or not, continue if element is a div
+		if (img_list[i].nodeName != "IMG" && img_list[i].nodeName == "DIV") {
+			// For each child element in the div
+			for (let j = 0; j < img_list_element.children[i].children.length; j++) {
+				// Push div child elements to the image list
+				img_list.push(img_list_element.children[i].children[j]);
+			}
+			// Remove the div from the image list
+			img_list.splice(i, 1);
 		}
-	});
+	}
+
+	// For each image in the image list
+	for (let i = 0; i < img_list.length; i++) {
+		// On click
+		img_list[i].onclick = () => {
+			if (isWidth1024()) {
+				// Sets current image being displayed
+				current_img = i;
+
+				// Creates image preview
+				let img_preview = document.createElement("div");
+				img_preview.classList.add("img-preview");
+
+				let img = document.createElement("img");
+				img.src = img_list[i].src;
+				img_preview.appendChild(img);
+
+				document.body.appendChild(img_preview);
+
+				// Removes or roates image preview on click
+				img_preview.addEventListener("click", function (e) {
+					if (e.target != img) {
+						// Remove image preview if clicked outside image
+						img_preview.remove();
+					} else if (img_list[current_img + 1] == null) {
+						// Remove image preview if no more images in list
+						img_preview.remove();
+					} else {
+						// Else, rotate image preview to next image
+						current_img += 1;
+						img.src = img_list[current_img].src;
+					}
+				});
+			}
+		};
+	}
 }
 
 // Run main fuctions
@@ -213,4 +226,9 @@ revealSidebar();
 
 // Run other misc functions
 revealTitle();
-rotateImages();
+let img_lists = document.querySelectorAll(".img-list");
+
+// For each image list, run function
+img_lists.forEach((img_list_element) => {
+	expandImageList(img_list_element);
+});
