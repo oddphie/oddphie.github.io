@@ -421,14 +421,6 @@ a:hover>iconify-icon {
     }
 }
 
-/* responsive max 1024px */
-@media only screen and (max-width: 1024px){
-    .flex:has(img:hover) img:not(:hover) {
-        opacity: 1;
-        transform: scale(0.97);
-    }
-}
-
 /* responsive max 768px */
 @media only screen and (max-width: 768px) {
     main{
