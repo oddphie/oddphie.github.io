@@ -45,12 +45,13 @@
 
 :root {
     --acc-col: darkolivegreen;
+    --bg-col: oldlace;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: oldlace;
+    background-color: var(--bg-col);
 }
 
 header {
@@ -99,25 +100,30 @@ header {
         display: block;
         overflow: hidden;
         text-transform: uppercase;
+        padding: 20px 15px 5px;
+        transition: 350ms ease-out;
         cursor: pointer;
+
+        &:hover {
+            color: #21300d;
+        }
 
         &::after {
             content: "";
             position: absolute;
-            background-color: black;
-            height: 12px;
+            background-color: var(--acc-col);
+            height: 100%;
             width: 100%;
             left: 0;
             bottom: 0;
             border-radius: 10px;
-            transform: translateX(-10%);
-            opacity: 0;
-            transition: 350ms ease-out;
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: 500ms ease-out;
         }
 
         &:hover::after {
             transform: translateX(0);
-            opacity: 1;
         }
     }
 }
