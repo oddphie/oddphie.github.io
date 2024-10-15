@@ -78,6 +78,10 @@ header {
                 text-decoration: none;
                 transition: 150ms ease-out;
 
+                iconify-icon {
+                    font-size: 32px;
+                }
+
                 &:hover {
                     color: var(--acc-col);
                 }
