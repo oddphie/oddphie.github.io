@@ -46,6 +46,7 @@
 :root {
     --acc-col: darkolivegreen;
     --bg-col: oldlace;
+    --txt-col: black;
 }
 
 body {
@@ -55,12 +56,11 @@ body {
 }
 
 header {
-    --header-padding: 70px;
-    width: calc(100vw - var(--header-padding) * 2);
-    padding: 10px var(--header-padding);
+    padding: 5px 0;
     display: flex;
-    justify-content: flex-end;
-    position: absolute;
+    flex-direction: column;
+    position: fixed;
+    z-index: 2;
 
     nav {
         font-family: "Noto Serif Oriya";
@@ -71,19 +71,32 @@ header {
             padding-inline-start: 0;
             list-style: none;
             display: flex;
-            gap: 32px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
 
             a {
                 color: initial;
                 text-decoration: none;
-                transition: 150ms ease-out;
+                background-color: var(--bg-col);
+                border-left: 0;
+                display: flex;
+                justify-content: flex-end;
+                gap: 20px;
+                padding: 15px 20px 10px 25px;
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                transform: translateX(calc(-100% + 70px));
+                transition: 600ms 100ms;
 
                 iconify-icon {
                     font-size: 32px;
                 }
 
                 &:hover {
-                    color: var(--acc-col);
+                    color: var(--bg-col);
+                    background-color: var(--txt-col);
+                    transform: translateX(0);
                 }
             }
         }
@@ -108,26 +121,33 @@ header {
         transition: 350ms ease-out;
         cursor: pointer;
 
-        &:hover {
-            color: #21300d;
-        }
-
         &::after {
             content: "";
             position: absolute;
-            background-color: var(--acc-col);
-            height: 100%;
+            background-color: var(--txt-col);
+            height: 12px;
             width: 100%;
             left: 0;
             bottom: 0;
             border-radius: 10px;
             z-index: -1;
-            transform: translateX(-100%);
-            transition: 500ms ease-out;
+            opacity: 0;
+            transform: translateX(-10%);
+            transition: 350ms ease-out;
         }
 
         &:hover::after {
+            opacity: 1;
             transform: translateX(0);
         }
     }
+}
+
+main {
+    overflow-x: hidden;
+}
+
+main>section {
+    height: 100vh;
+    padding: 0 calc(50px + 5vw);
 }
