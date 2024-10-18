@@ -155,16 +155,6 @@ header {
     }
 }
 
-@keyframes rotate {
-    from {
-        transform: rotateZ(0deg);
-    }
-
-    to {
-        transform: rotateZ(360deg);
-    }
-}
-
 h2,
 h3 {
     font-family: serif;
@@ -174,6 +164,20 @@ h3 {
         position: absolute;
         left: -35px;
         margin-top: 2px;
+
+        &:hover {
+            animation: rotate-fun 1000ms alternate-reverse infinite 150ms ease-in-out;
+        }
+    }
+}
+
+@keyframes rotate-fun {
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
     }
 }
 

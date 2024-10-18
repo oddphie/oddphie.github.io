@@ -50,8 +50,8 @@ function createNav() {
 		}
 
 		link.onclick = () => {
-			if (item[0] != currentSection) {
-				hideCurrentSection(nav_items);
+			if (item[0] !== currentSection) {
+				hideCurrentSection(nav_items, item[0]);
 
 				currentSection = item[0];
 				section.style.display = "";
@@ -63,15 +63,15 @@ function createNav() {
 	});
 }
 
-function hideCurrentSection(nav_items) {
+function hideCurrentSection(nav_items, selectedSection) {
 	// Get the nav item array of the current section
 	nav_items.forEach((item) => {
 		if (item.includes(currentSection)) {
 			// Set icon to line
 			document.querySelector(`a[href='#${currentSection}']>iconify-icon`).icon = item[2][0];
 
-			// Don't hide to hero section
-			if (currentSection !== "hero") {
+			// Don't hide to hero section or section other than hero
+			if (selectedSection !== "hero" && currentSection !== "hero") {
 				// Hide section
 				document.getElementById(item[0]).style.display = "none";
 			}
