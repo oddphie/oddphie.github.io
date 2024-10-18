@@ -47,13 +47,20 @@
 :root {
     --acc-col: darkolivegreen;
     --bg-col: oldlace;
+    --bg-col-dark: #ebdaca;
     --txt-col: black;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     padding: 0;
     background-color: var(--bg-col);
+    scroll-behavior: smooth;
+    font-family: "Open Sans", sans-serif;
 }
 
 header {
@@ -148,6 +155,28 @@ header {
     }
 }
 
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+h2,
+h3 {
+    font-family: serif;
+    position: relative;
+
+    >iconify-icon {
+        position: absolute;
+        left: -35px;
+        margin-top: 2px;
+    }
+}
+
 main {
     overflow-x: hidden;
 }
@@ -158,11 +187,15 @@ main>section {
 
     h2 {
         padding-top: 45px;
+        margin-top: 0;
     }
 
     p {
-        font-family: "Open Sans", sans-serif;
         font-size: 15px;
+    }
+
+    >section:not(:first-of-type) {
+        margin-top: 50px;
     }
 }
 
@@ -176,9 +209,8 @@ main>section {
     a {
         color: inherit;
         text-decoration: none;
-        font-family: "Open Sans", sans-serif;
         font-size: 15px;
-        
+
         iconify-icon {
             margin-right: 10px;
         }
@@ -191,4 +223,87 @@ iconify-icon.txt-size {
     vertical-align: middle;
     margin-right: 5px;
     margin-bottom: 2px;
+}
+
+#skills {
+    padding-inline-start: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: small;
+
+    li {
+        position: relative;
+
+        >div:not(:has(>iconify-icon)) {
+            width: 200px;
+            height: 14px;
+            background-color: var(--bg-col-dark);
+            border-radius: 3px;
+            border: 1px solid var(--txt-col);
+            margin-top: 2px;
+            margin-right: 50px;
+
+            >div {
+                background-color: var(--txt-col);
+                height: 100%;
+                border-right: 1px solid var(--txt-col);
+            }
+        }
+
+        >div:has(>iconify-icon) {
+            position: absolute;
+            bottom: -3px;
+            left: calc(100% + 10px - 50px);
+            width: max-content;
+        }
+    }
+}
+
+.icons-list {
+    padding-inline-start: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        >iconify-icon {
+            font-size: 20px;
+        }
+    }
+}
+
+#me-section {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-content: start;
+    gap: 10px 100px;
+
+    >section:first-of-type {
+        grid-column: 1 / span 2;
+    }
+
+    >section {
+        margin-top: 0;
+    }
+
+    #interests-section {
+        ul {
+            padding-inline-start: 0;
+            list-style: none;
+            font-size: small;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: 300px;
+        }
+    }
 }
