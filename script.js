@@ -28,6 +28,8 @@ function createNav() {
 		["contact", "Contact", ["mingcute:send-plane-line", "mingcute:send-plane-fill"]],
 	];
 
+	let nav_icons = [];
+
 	nav_items.forEach((item) => {
 		let section = document.getElementById(item[0]);
 
@@ -43,6 +45,8 @@ function createNav() {
 		icon.icon = item[2][0];
 		link.appendChild(icon);
 
+		nav_icons.push([icon, item[2][0]]);
+
 		if (item[0] === "hero" || item[0] === currentSection) {
 			section.style.display = "";
 		} else {
@@ -50,31 +54,35 @@ function createNav() {
 		}
 
 		link.onclick = () => {
-			if (item[0] !== currentSection) {
-				hideCurrentSection(nav_items, item[0]);
+			// Set icon to selected section
+			deselectNavIcons(nav_icons);
+			icon.icon = item[2][1];
+
+			// Hide current section and display selected section
+			if (item[0] !== currentSection && item[0] !== "hero") {
+				hideCurrentSection(nav_items);
 
 				currentSection = item[0];
 				section.style.display = "";
-				icon.icon = item[2][1];
-			} else {
-				icon.icon = item[2][1];
 			}
 		};
 	});
 }
 
-function hideCurrentSection(nav_items, selectedSection) {
+// Set nav icons to deselected icon
+function deselectNavIcons(nav_icons) {
+	nav_icons.forEach((icon) => {
+		icon.icon = icon[1];
+	});
+}
+
+// Hide the current section
+function hideCurrentSection(nav_items) {
 	// Get the nav item array of the current section
 	nav_items.forEach((item) => {
 		if (item.includes(currentSection)) {
-			// Set icon to line
-			document.querySelector(`a[href='#${currentSection}']>iconify-icon`).icon = item[2][0];
-
-			// Don't hide to hero section or section other than hero
-			if (selectedSection !== "hero" && currentSection !== "hero") {
-				// Hide section
-				document.getElementById(item[0]).style.display = "none";
-			}
+			// Hide section
+			document.getElementById(item[0]).style.display = "none";
 		}
 	});
 }
