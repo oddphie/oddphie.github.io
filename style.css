@@ -157,7 +157,7 @@ header {
 
 h2,
 h3 {
-    font-family: serif;
+    font-family: "Times New Roman", serif;
     position: relative;
 
     >iconify-icon {
