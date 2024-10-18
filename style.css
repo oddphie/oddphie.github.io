@@ -199,7 +199,7 @@ main>section {
     }
 }
 
-#contact+ul {
+#contact ul {
     padding-inline-start: 0;
     list-style: none;
     display: flex;
@@ -280,7 +280,7 @@ iconify-icon.txt-size {
     }
 }
 
-#me-section {
+#me {
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
@@ -295,7 +295,7 @@ iconify-icon.txt-size {
         margin-top: 0;
     }
 
-    #interests-section {
+    #interests {
         ul {
             padding-inline-start: 0;
             list-style: none;
