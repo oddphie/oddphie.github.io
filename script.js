@@ -37,7 +37,11 @@ function createNav() {
 		list.appendChild(list_item);
 
 		let link = document.createElement("a");
-		link.href = "#" + item[0];
+		if (document.querySelector("body#landing-page") != null) {
+			link.href = "#" + item[0];
+		} else {
+			link.href = "/";
+		}
 		link.innerText = item[1];
 		list_item.appendChild(link);
 
@@ -72,7 +76,7 @@ function createNav() {
 // Set nav icons to deselected icon
 function deselectNavIcons(nav_icons) {
 	nav_icons.forEach((icon) => {
-		icon.icon = icon[1];
+		icon[0].icon = icon[1];
 	});
 }
 
