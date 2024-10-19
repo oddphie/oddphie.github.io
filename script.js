@@ -197,6 +197,11 @@ function expandImageList(img_list_element) {
 	}
 }
 
+/* if (document.querySelector("body#landing-page") != null) {
+	if (window.scrollY == 0) {
+	}
+} */
+
 // Create components
 createNav();
 
