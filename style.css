@@ -17,29 +17,8 @@
 }
 
 @font-face {
-    font-family: "Fony";
-    src: url(./resources/assets/fony/Fony.otf);
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Cheesy Cats";
-    src: url(./resources/assets/cheesy_cat/Cheesy\ Cats.otf);
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: "Cat Song";
     src: url(./resources/assets/cat_song/Cat\ Song.otf);
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Journey Handwriting";
-    src: url(./resources/assets/journey_handwriting/JourneyHandwritingFon-Rg.otf);
     font-weight: normal;
     font-style: normal;
 }
@@ -171,6 +150,10 @@ h3 {
     }
 }
 
+h3 {
+    margin-top: 50px;
+}
+
 @keyframes rotate-fun {
     from {
         transform: rotateZ(0deg);
@@ -185,22 +168,88 @@ main {
     overflow-x: hidden;
 }
 
-main>section {
-    height: 100vh;
-    padding: 0 calc(50px + 5vw);
+main>section,
+article {
+    min-height: calc(100vh - 50px);
+    padding: 0 calc(50px + 5vw) 50px;
 
     h2 {
         padding-top: 45px;
         margin-top: 0;
     }
 
-    p {
-        font-size: 15px;
-    }
-
     >section:not(:first-of-type) {
         margin-top: 50px;
     }
+}
+
+main>section p {
+    font-size: 15px;
+}
+
+article {
+    padding-right: 30vw;
+
+    p,
+    a,
+    ul {
+        font-size: 14px;
+    }
+
+    li>ul {
+        margin-top: 5px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+.img-grid {
+    display: flex;
+    position: relative;
+    gap: 10px;
+    padding-inline-start: 0;
+    list-style: none;
+
+    >li {
+        height: 400px;
+        flex: 1 1 auto;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+    }
+}
+
+img[onclick="expandImage(this.src)"], *[onclick="expandImageList(this)"] img, .img-grid img {
+    cursor: pointer;
+}
+
+.img-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000050;
+    z-index: 2;
+}
+
+.img-preview>img {
+    max-width: 850px;
+    max-height: 90vh;
+    cursor: pointer;
 }
 
 #contact ul {
