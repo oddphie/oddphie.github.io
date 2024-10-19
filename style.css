@@ -155,7 +155,7 @@ h3 {
 }
 
 main {
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 main>section,
