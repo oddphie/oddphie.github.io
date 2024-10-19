@@ -154,16 +154,6 @@ h3 {
     margin-top: 50px;
 }
 
-@keyframes rotate-fun {
-    from {
-        transform: rotateZ(0deg);
-    }
-
-    to {
-        transform: rotateZ(360deg);
-    }
-}
-
 main {
     overflow-x: hidden;
 }
@@ -381,5 +371,35 @@ iconify-icon.txt-size {
             gap: 15px;
             width: 300px;
         }
+    }
+}
+
+body>* {
+    animation: appear-up 500ms ease-in-out;
+}
+
+body>header {
+    animation-duration: 850ms;
+}
+
+@keyframes appear-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotate-fun {
+    from {
+        transform: rotateZ(0deg);
+    }
+
+    to {
+        transform: rotateZ(360deg);
     }
 }

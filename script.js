@@ -1,5 +1,18 @@
 "use strict";
 
+// Reveal element effect
+function revealElement(element) {
+	// Reset
+	element.style.opacity = "0";
+	element.style.animation = "";
+
+	setTimeout(() => {
+		// Add animation delay effect to each section in content
+		element.style.animation = "appear-up 500ms ease-in-out";
+		element.style.opacity = "1";
+	}, 50);
+}
+
 // Create skill bars
 const skills = document.getElementById("skills");
 
@@ -61,6 +74,8 @@ function createNav() {
 			}
 
 			link.onclick = () => {
+				revealElement(section);
+
 				// Set icon to selected section
 				deselectNavIcons(nav_icons);
 				icon.icon = item[2][1];
