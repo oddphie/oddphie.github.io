@@ -4,21 +4,21 @@
 
 @font-face {
     font-family: "Warrior";
-    src: url(./resources/assets/warriot-font/Warriot-lgR3y.otf);
+    src: url(./resources/assets/fonts/warriot-font/Warriot-lgR3y.otf);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Motley Forces";
-    src: url(./resources/assets/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf);
+    src: url(./resources/assets/fonts/motley-forces-font/MotleyForcesRegular-w1rZ3.ttf);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Cat Song";
-    src: url(./resources/assets/cat_song/Cat\ Song.otf);
+    src: url(./resources/assets/fonts/cat_song/Cat\ Song.otf);
     font-weight: normal;
     font-style: normal;
 }
@@ -247,7 +247,7 @@ img[onclick="expandImage(this.src)"], *[onclick="expandImageList(this)"] img, .i
 }
 
 .img-preview>img {
-    max-width: 850px;
+    max-width: 85vw;
     max-height: 90vh;
     cursor: pointer;
 }
@@ -263,11 +263,34 @@ img[onclick="expandImage(this.src)"], *[onclick="expandImageList(this)"] img, .i
         color: inherit;
         text-decoration: none;
         font-size: 15px;
+        display: inline-block;
 
         iconify-icon {
             margin-right: 10px;
         }
     }
+}
+
+.underlined {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.underlined::after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 32px);
+    right: 0;
+    bottom: 2px;
+    height: 1px;
+    background-color: var(--txt-col);
+    transform: scaleX(0);
+    transform-origin: 0% 100%;
+    transition: 500ms ease-out;
+}
+
+.underlined:hover::after {
+    transform: scaleX(1);
 }
 
 iconify-icon.txt-size {
