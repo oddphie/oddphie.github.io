@@ -194,8 +194,10 @@ article {
         margin-bottom: 5px;
     }
 
-    img {
+    img,
+    embed {
         width: 100%;
+        margin: 20px 0;
     }
 }
 
@@ -219,7 +221,9 @@ article {
     }
 }
 
-img[onclick="expandImage(this.src)"], *[onclick="expandImageList(this)"] img, .img-grid img {
+img[onclick="expandImage(this.src)"],
+*[onclick="expandImageList(this)"] img,
+.img-grid img {
     cursor: pointer;
 }
 
@@ -372,6 +376,15 @@ iconify-icon.txt-size {
             width: 300px;
         }
     }
+}
+
+.divider.stars {
+    text-align: center;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 50px 0;
 }
 
 body>* {
