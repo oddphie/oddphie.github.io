@@ -104,7 +104,7 @@ function createSidebar() {
 
 	// Link item information
 	let link_items = [
-		["mailto:sophie.martin@connect.qut.edu.au", "ic:round-email", "sophie.martin@connect.qut.edu.au"],
+		["mailto:sophmxm@gmail.com", "ic:round-email", "sophmxm@gmail.com"],
 		["https://www.linkedin.com/in/sophmxm/", "mdi:linkedin", "linkedin.com/sophmxm"],
 		["https://github.com/sophmxm", "mingcute:github-fill", "github.com/sophmxm"],
 	];
