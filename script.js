@@ -1,113 +1,138 @@
-"use strict";
+const main = document.getElementsByTagName("main")[0];
+const sidebar = document.getElementById("sidebar");
+const content = document.getElementById("content");
 
-// Reveal element effect
-function revealElement(element) {
-	// Reset
-	element.style.opacity = "0";
-	element.style.animation = "";
-
-	setTimeout(() => {
-		// Add animation delay effect to each section in content
-		element.style.animation = "appear-up 500ms ease-in-out";
-		element.style.opacity = "1";
-	}, 50);
+// Staggered reveal sidebar effect
+function revealSidebar() {
+	for (let i = 0; i < sidebar.children.length; i++) {
+		// Add animation delay effect to each sidebar element
+		sidebar.children[i].style.animationDelay = `calc(500ms + ${i * 150}ms)`;
+	}
 }
 
-// Create skill bars
-const skills = document.getElementById("skills");
+// Staggered reveal title words effect
+function revealTitle() {
+	let titles = document.querySelectorAll(".title");
 
-function createSkillBars() {
-	skills.childNodes.forEach((skill) => {
-		if (skill.nodeName == "LI") {
-			let skill_container = document.createElement("div");
-			skill.appendChild(skill_container);
+	titles.forEach((title) => {
+		let words = title.textContent.split(" ");
+		title.innerText = "";
 
-			let skill_bar = document.createElement("div");
-			skill_bar.style.width = skill.dataset.skill + "%";
-			skill_container.appendChild(skill_bar);
+		words.forEach((word) => {
+			// Append each word to span
+			let span = document.createElement("span");
+			span.append(word + " ");
+			title.appendChild(span);
+		});
+
+		for (let i = 0; i < title.children.length; i++) {
+			// Add animation delay effect to each span
+			title.children[i].style.animationDelay = `calc(1350ms + ${i * 150}ms)`;
 		}
 	});
 }
 
-const nav = document.getElementById("nav-bar");
-let currentSection = "me";
+// Staggered reveal content effect
+function revealContent() {
+	for (let i = 0; i < content.children.length; i++) {
+		// Add animation delay effect to each section in content
+		content.children[i].style.animationDelay = `calc(1000ms + ${i * 150}ms)`;
+	}
+}
 
+// Create navigation bar
 function createNav() {
-	const list = document.createElement("ul");
+	const nav = document.getElementById("nav-bar");
+	const current_tab = nav.dataset.currentTab;
+
+	let list = document.createElement("ul");
 	nav.appendChild(list);
 
+	// Nav item information
 	const nav_items = [
-		["hero", "", ["mdi:star-four-points-outline", "mdi:star-four-points"]],
-		["me", "Me", ["mingcute:user-3-line", "mingcute:user-3-fill"]],
-		["my-stuff", "My stuff", ["mingcute:box-3-line", "mingcute:box-3-fill"]],
-		["contact", "Contact", ["mingcute:send-plane-line", "mingcute:send-plane-fill"]],
+		["/websites.html", "majesticons:browser", "Websites"],
+		// ["/art.html", "ep:picture-filled", "Art"],
+		["/other.html", "fluent:list-16-filled", "Other"],
+		["/about-me.html", "akar-icons:info-fill", "About me"],
 	];
 
-	let nav_icons = [];
-
+	// Add each nav item on the nav bar
 	nav_items.forEach((item) => {
-		let section = document.getElementById(item[0]);
-
 		let list_item = document.createElement("li");
 		list.appendChild(list_item);
 
 		let link = document.createElement("a");
-		if (document.querySelector("body#landing-page") != null) {
-			link.href = "#" + item[0];
-		} else {
-			link.href = "/";
-		}
-		link.innerText = item[1];
+		link.href = item[0];
+		link.innerText = item[2];
 		list_item.appendChild(link);
 
 		let icon = document.createElement("iconify-icon");
-		icon.icon = item[2][0];
-		link.appendChild(icon);
+		icon.icon = item[1];
+		link.prepend(icon);
 
-		nav_icons.push([icon, item[2][0]]);
+		// Check if tab is the current tab
+		if (current_tab == item[2].toLowerCase()) {
+			// Add class
+			list_item.classList.add("current");
 
-		if (section != null) {
-			if (item[0] === "hero" || item[0] === currentSection) {
-				section.style.display = "";
-			} else {
-				section.style.display = "none";
-			}
-
-			link.onclick = () => {
-				revealElement(section);
-
-				// Set icon to selected section
-				deselectNavIcons(nav_icons);
-				icon.icon = item[2][1];
-
-				// Hide current section and display selected section
-				if (item[0] !== currentSection && item[0] !== "hero") {
-					hideCurrentSection(nav_items);
-
-					currentSection = item[0];
-					section.style.display = "";
-				}
-			};
+			// Remove link
+			link.href = "#";
 		}
 	});
 }
 
-// Set nav icons to deselected icon
-function deselectNavIcons(nav_icons) {
-	nav_icons.forEach((icon) => {
-		icon[0].icon = icon[1];
-	});
-}
+// Create sidebar
+function createSidebar() {
+	const sidebar = document.getElementById("sidebar");
 
-// Hide the current section
-function hideCurrentSection(nav_items) {
-	// Get the nav item array of the current section
-	nav_items.forEach((item) => {
-		if (item.includes(currentSection)) {
-			// Hide section
-			document.getElementById(item[0]).style.display = "none";
-		}
+	// Create heading
+	let heading = document.createElement("h1");
+	let link = document.createElement("a");
+	link.href = "/";
+	link.innerText = "Sophie Martin";
+	heading.appendChild(link);
+	sidebar.appendChild(heading);
+
+	// Create description
+	let p1 = document.createElement("p");
+	p1.innerText = `Hi, I’m Sophie! I’m an emerging interaction designer who specialises in UI/UX and visual design, with a big passion for web design and development.`;
+	sidebar.appendChild(p1);
+
+	let p2 = document.createElement("p");
+	p2.innerText = `As both an artist and designer, I enjoy producing visually engaging digital works that focus on creating fun and interactive experiences. I love designing for people and problem-solving, always striving to create intuitive and user-centered solutions.`;
+	sidebar.appendChild(p2);
+
+	// Link item information
+	let link_items = [
+		["mailto:sophie.martin@connect.qut.edu.au", "ic:round-email", "sophie.martin@connect.qut.edu.au"],
+		["https://www.linkedin.com/in/sophmxm/", "mdi:linkedin", "linkedin.com/sophmxm"],
+		["https://github.com/sophmxm", "mingcute:github-fill", "github.com/sophmxm"],
+	];
+
+	// Add each link item to the sidebar
+	let list = document.createElement("ul");
+	list.classList.add("links");
+	sidebar.appendChild(list);
+	link_items.forEach((item) => {
+		list_item = document.createElement("li");
+		list.appendChild(list_item);
+
+		let link = document.createElement("a");
+		link.href = item[0];
+		link.classList.add("underlined");
+		link.innerText = " " + item[2];
+		link.target = "_blank";
+		list_item.appendChild(link);
+
+		let icon = document.createElement("iconify-icon");
+		icon.icon = item[1];
+		icon.classList.add("txt-size");
+		link.prepend(icon);
 	});
+
+	let p3 = document.createElement("p");
+	p3.innerText = `Website portfolio made by me from scratch with HTML, CSS, and JavaScript.`;
+	sidebar.appendChild(p3);
 }
 
 // Check if the window width is 1024px or larger, returns bool
@@ -147,18 +172,16 @@ function expandImageList(img_list_element) {
 	// For each child element in image list
 	for (let i = 0; i < img_list.length; i++) {
 		// Check if element is an image or not, continue if element is a div
-		if (img_list[i].nodeName != "IMG") {
+		if (img_list[i].nodeName != "IMG" && img_list[i].nodeName == "DIV") {
 			// For each child element in the div
 			for (let j = 0; j < img_list_element.children[i].children.length; j++) {
 				// Push div child elements to the image list
 				img_list.push(img_list_element.children[i].children[j]);
 			}
+			// Remove the div from the image list
+			img_list.splice(i, 1);
 		}
 	}
-
-	// Filter out anything that is not an image
-	img_list = img_list.filter((element) => element.nodeName == "IMG");
-	console.log("final", img_list);
 
 	// For each image in the image list
 	for (let i = 0; i < img_list.length; i++) {
@@ -178,7 +201,7 @@ function expandImageList(img_list_element) {
 
 				document.body.appendChild(img_preview);
 
-				// Removes or rotates image preview on click
+				// Removes or roates image preview on click
 				img_preview.addEventListener("click", function (e) {
 					if (e.target != img) {
 						// Remove image preview if clicked outside image
@@ -197,17 +220,16 @@ function expandImageList(img_list_element) {
 	}
 }
 
-/* if (document.querySelector("body#landing-page") != null) {
-	if (window.scrollY == 0) {
-	}
-} */
-
-// Create components
+// Run main fuctions
 createNav();
+createSidebar();
+revealSidebar();
 
-if (skills) createSkillBars();
+// Run other misc functions
+revealTitle();
 
-let image_grids = document.querySelectorAll(".img-grid");
-image_grids.forEach((grid) => {
-	expandImageList(grid);
+let img_lists = document.querySelectorAll(".img-list");
+// For each image list, run function
+img_lists.forEach((img_list_element) => {
+	expandImageList(img_list_element);
 });
