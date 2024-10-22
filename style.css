@@ -63,7 +63,7 @@ h2 {
 
 h3 {
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .title {
@@ -79,8 +79,12 @@ ul {
     font-size: 14px;
 }
 
-section>ul li:not(:first-of-type) {
-    margin-top: 10px;
+ul>ul {
+    margin: 10px 0;
+}
+
+section>ul li {
+    margin-top: 8px;
 }
 
 .underlined {
