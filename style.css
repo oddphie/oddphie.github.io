@@ -27,6 +27,7 @@
     --acc-col: darkolivegreen;
     --bg-col: oldlace;
     --bg-col-dark: #ebdaca;
+    --bg-col-darker: #796152;
     --txt-col: black;
 }
 
@@ -346,6 +347,67 @@ iconify-icon.txt-size {
 
         >iconify-icon {
             font-size: 20px;
+        }
+    }
+}
+
+#my-stuff>div {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    >section {
+
+        >p:last-of-type {
+            display: flex;
+            gap: 10px;
+        }
+
+        a {
+            color: var(--bg-col-darker);
+            transition: 350ms;
+
+            &:hover {
+                color: var(--txt-col);
+            }
+        }
+
+        img,
+        div:not(.flex)>img,
+        iframe {
+            display: block;
+            width: 100%;
+            max-height: 800px;
+            object-fit: cover;
+            object-position: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        div.flex>img {
+            width: 50%;
+        }
+
+        div.flex.col-three>img {
+            width: 33%
+        }
+    }
+}
+
+.flex {
+    display: flex;
+    gap: 5px;
+
+    >div {
+        display: flex;
+        gap: 5px;
+        flex-direction: column;
+        width: 100%;
+
+        >img {
+            width: 100%;
+            transition: 350ms;
+            cursor: pointer;
         }
     }
 }
