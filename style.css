@@ -105,6 +105,10 @@ embed {
     margin: 10px 0;
 }
 
+iframe {
+    aspect-ratio: 16/9;
+}
+
 /* dividers */
 hr {
     width: 100%;
