@@ -181,7 +181,7 @@ section.logos {
 }
 
 .img-preview>img {
-    max-width: 850px;
+    max-width: 80vw;
     max-height: 90vh;
     cursor: pointer;
 }
@@ -464,7 +464,6 @@ a:hover>iconify-icon {
     }
 
     #nav-bar {
-        left: 0;
         width: fit-content;
     }
 
