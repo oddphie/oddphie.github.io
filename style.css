@@ -116,7 +116,7 @@ header {
         transition: 350ms ease-out;
         cursor: pointer;
 
-        &::after {
+        /* &::after {
             content: "";
             position: absolute;
             background-color: var(--txt-col);
@@ -134,7 +134,7 @@ header {
         &:hover::after {
             opacity: 1;
             transform: translateX(0);
-        }
+        } */
     }
 
     p {

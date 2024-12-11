@@ -95,7 +95,7 @@ function createNav() {
 // Switch section
 function switchSection(selected_section) {
 	// If section is not hero section
-	if (current_section[0] != "" && selected_section[0] != "") {
+	if (current_section[0] != "") {
 		// Hide previous current section
 		document.getElementById(current_section[0]).style.display = "none";
 	}
