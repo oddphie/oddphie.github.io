@@ -6,7 +6,7 @@ const main = document.getElementsByTagName("main")[0];
 // Nav items
 const nav = document.getElementById("nav-bar");
 const nav_items = [
-	["hero", "", ["mdi:star-four-points-outline", "mdi:star-four-points"]],
+	["", "", ["mdi:star-four-points-outline", "mdi:star-four-points"]],
 	["me", "Me", ["mingcute:user-3-line", "mingcute:user-3-fill"]],
 	["my-stuff", "My stuff", ["mingcute:box-3-line", "mingcute:box-3-fill"]],
 	["contact", "Contact", ["mingcute:send-plane-line", "mingcute:send-plane-fill"]],
@@ -21,6 +21,11 @@ function initialiseHomePage() {
 	sections.forEach((section) => {
 		section.style.display = "none";
 	});
+
+	if (win_url.split("#")[1] != undefined) {
+		current_section = nav_items.filter((item) => item.includes(win_url.split("#")[1]))[0];
+		switchSection(current_section);
+	}
 }
 
 // Reveal element effect
@@ -61,9 +66,6 @@ function createNav() {
 
 	// For each nav item
 	nav_items.forEach((item) => {
-		// Get relating section
-		let section = document.getElementById(item[0]);
-
 		// Create nav list item
 		let list_item = document.createElement("li");
 		list.appendChild(list_item);
@@ -93,7 +95,7 @@ function createNav() {
 // Switch section
 function switchSection(selected_section) {
 	// If section is not hero section
-	if (current_section[0] != "hero" && selected_section[0] != "hero") {
+	if (current_section[0] != "" && selected_section[0] != "") {
 		// Hide previous current section
 		document.getElementById(current_section[0]).style.display = "none";
 	}
@@ -108,7 +110,7 @@ function switchSection(selected_section) {
 	document.querySelector(`#nav-bar a[href='#${selected_section[0]}']>iconify-icon`).icon = selected_section[2][1];
 
 	// Reveal selected section
-	if (selected_section[0] != "hero") {
+	if (selected_section[0] != "") {
 		let section = document.getElementById(selected_section[0]);
 		section.style.display = "";
 		revealElement(section);
