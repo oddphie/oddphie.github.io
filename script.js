@@ -1,138 +1,118 @@
-const main = document.getElementsByTagName("main")[0];
-const sidebar = document.getElementById("sidebar");
-const content = document.getElementById("content");
+"use strict";
 
-// Staggered reveal sidebar effect
-function revealSidebar() {
-	for (let i = 0; i < sidebar.children.length; i++) {
-		// Add animation delay effect to each sidebar element
-		sidebar.children[i].style.animationDelay = `calc(500ms + ${i * 150}ms)`;
-	}
+const win_url = window.location.href;
+const main = document.getElementsByTagName("main")[0];
+
+// Nav items
+const nav = document.getElementById("nav-bar");
+const nav_items = [
+	["hero", "", ["mdi:star-four-points-outline", "mdi:star-four-points"]],
+	["me", "Me", ["mingcute:user-3-line", "mingcute:user-3-fill"]],
+	["my-stuff", "My stuff", ["mingcute:box-3-line", "mingcute:box-3-fill"]],
+	["contact", "Contact", ["mingcute:send-plane-line", "mingcute:send-plane-fill"]],
+];
+
+// Initialise home page sections
+let current_section = nav_items[0];
+
+function initialiseHomePage() {
+	let sections = document.querySelectorAll("main>section");
+
+	sections.forEach((section) => {
+		section.style.display = "none";
+	});
 }
 
-// Staggered reveal title words effect
-function revealTitle() {
-	let titles = document.querySelectorAll(".title");
+// Reveal element effect
+function revealElement(element) {
+	// Reset
+	element.style.opacity = "0";
+	element.style.animation = "";
 
-	titles.forEach((title) => {
-		let words = title.textContent.split(" ");
-		title.innerText = "";
+	setTimeout(() => {
+		// Add animation delay effect to each section in content
+		element.style.animation = "appear-up 500ms ease-in-out";
+		element.style.opacity = "1";
+	}, 50);
+}
 
-		words.forEach((word) => {
-			// Append each word to span
-			let span = document.createElement("span");
-			span.append(word + " ");
-			title.appendChild(span);
-		});
+// Create skill bars
+const skills = document.getElementById("skills");
 
-		for (let i = 0; i < title.children.length; i++) {
-			// Add animation delay effect to each span
-			title.children[i].style.animationDelay = `calc(1350ms + ${i * 150}ms)`;
+function createSkillBars() {
+	skills.childNodes.forEach((skill) => {
+		if (skill.nodeName == "LI") {
+			let skill_container = document.createElement("div");
+			skill.appendChild(skill_container);
+
+			let skill_bar = document.createElement("div");
+			skill_bar.style.width = skill.dataset.skill + "%";
+			skill_container.appendChild(skill_bar);
 		}
 	});
 }
 
-// Staggered reveal content effect
-function revealContent() {
-	for (let i = 0; i < content.children.length; i++) {
-		// Add animation delay effect to each section in content
-		content.children[i].style.animationDelay = `calc(1000ms + ${i * 150}ms)`;
-	}
-}
-
-// Create navigation bar
+// Create nav
 function createNav() {
-	const nav = document.getElementById("nav-bar");
-	const current_tab = nav.dataset.currentTab;
-
-	let list = document.createElement("ul");
+	const list = document.createElement("ul");
 	nav.appendChild(list);
 
-	// Nav item information
-	const nav_items = [
-		["/websites.html", "majesticons:browser", "Websites"],
-		// ["/art.html", "ep:picture-filled", "Art"],
-		["/other.html", "fluent:list-16-filled", "Other"],
-		["/about-me.html", "akar-icons:info-fill", "About me"],
-	];
+	let nav_icons = [];
 
-	// Add each nav item on the nav bar
+	// For each nav item
 	nav_items.forEach((item) => {
+		// Get relating section
+		let section = document.getElementById(item[0]);
+
+		// Create nav list item
 		let list_item = document.createElement("li");
 		list.appendChild(list_item);
 
 		let link = document.createElement("a");
-		link.href = item[0];
-		link.innerText = item[2];
+		if (document.querySelector("body#landing-page") != null) {
+			link.href = "#" + item[0];
+		} else {
+			link.href = "/";
+		}
+		link.innerText = item[1];
 		list_item.appendChild(link);
 
 		let icon = document.createElement("iconify-icon");
-		icon.icon = item[1];
-		link.prepend(icon);
+		icon.icon = item[2][0];
+		link.appendChild(icon);
 
-		// Check if tab is the current tab
-		if (current_tab == item[2].toLowerCase()) {
-			// Add class
-			list_item.classList.add("current");
+		nav_icons.push([icon, item[2][0]]);
 
-			// Remove link
-			link.href = "#";
-		}
+		// Nav list item on click
+		link.onclick = () => {
+			switchSection(item);
+		};
 	});
 }
 
-// Create sidebar
-function createSidebar() {
-	const sidebar = document.getElementById("sidebar");
+// Switch section
+function switchSection(selected_section) {
+	// If section is not hero section
+	if (current_section[0] != "hero" && selected_section[0] != "hero") {
+		// Hide previous current section
+		document.getElementById(current_section[0]).style.display = "none";
+	}
 
-	// Create heading
-	let heading = document.createElement("h1");
-	let link = document.createElement("a");
-	link.href = "/";
-	link.innerText = "Sophie Martin";
-	heading.appendChild(link);
-	sidebar.appendChild(heading);
+	// Deselect previous selected nav item
+	document.querySelector(`#nav-bar a[href='#${current_section[0]}']>iconify-icon`).icon = current_section[2][0];
 
-	// Create description
-	let p1 = document.createElement("p");
-	p1.innerText = `Hi, I’m Sophie! I’m an emerging interaction designer who specialises in UI/UX and visual design, with a big passion for web design and development.`;
-	sidebar.appendChild(p1);
+	// Update current section
+	current_section = selected_section;
 
-	let p2 = document.createElement("p");
-	p2.innerText = `As both an artist and designer, I enjoy producing visually engaging digital works that focus on creating fun and interactive experiences. I love designing for people and problem-solving, always striving to create intuitive and user-centered solutions.`;
-	sidebar.appendChild(p2);
+	// Select current selected nav item
+	document.querySelector(`#nav-bar a[href='#${selected_section[0]}']>iconify-icon`).icon = selected_section[2][1];
 
-	// Link item information
-	let link_items = [
-		["mailto:sophmxm@gmail.com", "ic:round-email", "sophmxm@gmail.com"],
-		["https://www.linkedin.com/in/sophmxm/", "mdi:linkedin", "linkedin.com/sophmxm"],
-		["https://github.com/sophmxm", "mingcute:github-fill", "github.com/sophmxm"],
-	];
-
-	// Add each link item to the sidebar
-	let list = document.createElement("ul");
-	list.classList.add("links");
-	sidebar.appendChild(list);
-	link_items.forEach((item) => {
-		list_item = document.createElement("li");
-		list.appendChild(list_item);
-
-		let link = document.createElement("a");
-		link.href = item[0];
-		link.classList.add("underlined");
-		link.innerText = " " + item[2];
-		link.target = "_blank";
-		list_item.appendChild(link);
-
-		let icon = document.createElement("iconify-icon");
-		icon.icon = item[1];
-		icon.classList.add("txt-size");
-		link.prepend(icon);
-	});
-
-	let p3 = document.createElement("p");
-	p3.innerText = `Website portfolio made by me from scratch with HTML, CSS, and JavaScript.`;
-	sidebar.appendChild(p3);
+	// Reveal selected section
+	if (selected_section[0] != "hero") {
+		let section = document.getElementById(selected_section[0]);
+		section.style.display = "";
+		revealElement(section);
+	}
 }
 
 // Check if the window width is 1024px or larger, returns bool
@@ -172,16 +152,18 @@ function expandImageList(img_list_element) {
 	// For each child element in image list
 	for (let i = 0; i < img_list.length; i++) {
 		// Check if element is an image or not, continue if element is a div
-		if (img_list[i].nodeName != "IMG" && img_list[i].nodeName == "DIV") {
+		if (img_list[i].nodeName != "IMG") {
 			// For each child element in the div
 			for (let j = 0; j < img_list_element.children[i].children.length; j++) {
 				// Push div child elements to the image list
 				img_list.push(img_list_element.children[i].children[j]);
 			}
-			// Remove the div from the image list
-			img_list.splice(i, 1);
 		}
 	}
+
+	// Filter out anything that is not an image
+	img_list = img_list.filter((element) => element.nodeName == "IMG");
+	console.log("final", img_list);
 
 	// For each image in the image list
 	for (let i = 0; i < img_list.length; i++) {
@@ -201,7 +183,7 @@ function expandImageList(img_list_element) {
 
 				document.body.appendChild(img_preview);
 
-				// Removes or roates image preview on click
+				// Removes or rotates image preview on click
 				img_preview.addEventListener("click", function (e) {
 					if (e.target != img) {
 						// Remove image preview if clicked outside image
@@ -220,16 +202,18 @@ function expandImageList(img_list_element) {
 	}
 }
 
-// Run main fuctions
+/* if (document.querySelector("body#landing-page") != null) {
+	if (window.scrollY == 0) {
+	}
+} */
+
+// Create components
 createNav();
-createSidebar();
-revealSidebar();
+initialiseHomePage();
 
-// Run other misc functions
-revealTitle();
+if (skills) createSkillBars();
 
-let img_lists = document.querySelectorAll(".img-list");
-// For each image list, run function
-img_lists.forEach((img_list_element) => {
-	expandImageList(img_list_element);
+let image_grids = document.querySelectorAll(".img-grid");
+image_grids.forEach((grid) => {
+	expandImageList(grid);
 });
